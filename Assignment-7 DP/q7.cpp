@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int dp[2][n];
+        for(int j=0;j<n;j++){
+            dp[0][j] = 1;
+            dp[1][j] = 1;
+        }
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                dp[1][j] = dp[1][j-1] + dp[0][j]; //dp work
+                dp[0][j] = dp[1][j];//copy first row to 0th row
+            }
+        }
+        return dp[1][n-1];
+    }
+};
